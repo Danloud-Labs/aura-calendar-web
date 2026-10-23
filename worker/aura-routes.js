@@ -23,6 +23,7 @@ const html = (body, status = 200) => new Response(body, {
 export async function handleAuraCalendar(request) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, '').toLowerCase();
+    if (path === '/aura-calendar' || path === '/aura') return Response.redirect(`${url.origin}${AURA_BASE_PATH}`, 301);
     if (path !== AURA_BASE_PATH && !path.startsWith(AURA_BASE_PATH + '/')) return null;
 
     const rest = path.slice(AURA_BASE_PATH.length);       // "", "/themes", "/themes/pulse"

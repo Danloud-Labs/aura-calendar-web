@@ -26,9 +26,11 @@ The Worker is edited in the Cloudflare dashboard. These steps replace the old si
      const aura = await handleAuraCalendar(request);
      if (aura) return aura;
      ```
-   - Delete the old route for `/ios/aura-calendar` and the old import of `htmlAuraCalendar`
-     (and the old file that exported it, if nothing else uses it). The new pages do not use
-     `styles.js`, so `cssSubPaginas` stays as it is for the other pages.
+   - Delete the old route for `/ios/aura-calendar` and the old import of `htmlAuraCalendar`.
+     The Worker already has a file called `aura-calendar.js` (the old page): paste the new
+     `aura-calendar.js` over it. The new pages do not use `styles.js`, so `cssSubPaginas`
+     stays as it is for the other pages.
+   - The short links `/aura-calendar` and `/aura` are redirected by `handleAuraCalendar`.
    - If `fetch` is not `async`, make it `async fetch(request, env, ctx)`.
 5. **Deploy**, then open:
    - https://danloudlabs.com/ios/aura-calendar
